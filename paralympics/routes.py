@@ -22,6 +22,18 @@ def resource_not_found(e):
         """
     return jsonify(error=str(e)), 404
 
+@app.errorhandler(ValidationError)
+def register_validation_error(error):
+    """ Error handler for marshmallow schema validation errors.
+
+    Args:
+        error (ValidationError): Marshmallow error.
+    Returns:
+        HTTP response with the validation error message and the 400 status code
+    """
+    response = error.messages
+    return response, 400
+
 @app.get("/regions")
 def get_regions():
     """Returns a list of NOC region codes and their details in JSON.
