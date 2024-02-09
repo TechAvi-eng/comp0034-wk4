@@ -11,6 +11,18 @@ region_schema = RegionSchema()
 events_schema = EventSchema(many=True)
 event_schema = EventSchema()
 
+@app.errorhandler(ValidationError)
+def register_validation_error(error):
+    """ Error handler for marshmallow schema validation errors.
+
+    Args:
+        error (ValidationError): Marshmallow error.
+    Returns:
+        HTTP response with the validation error message and the 400 status code
+    """
+    response = error.messages
+    return response, 400
+
 @app.errorhandler(404)
 def resource_not_found(e):
     """ Error handler for 404.
