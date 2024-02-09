@@ -81,7 +81,6 @@ def test_region_post_error(client):
     assert response.status_code == 400
 
 
-# TEST Failing - tests/test_routes.py:94: TypeError
 def test_patch_region(client, new_region):
     """
         GIVEN an existing region
@@ -97,7 +96,6 @@ def test_patch_region(client, new_region):
     assert response.status_code == 200
 
 
-# Test Failing - tests/test_routes.py:126: TypeError
 def test_delete_region(client, new_region):
     """
     GIVEN an existing region in JSON format
